@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:flutter_tooltip/src/models/tooltip_cons.dart' as tooltipsCons;
 import 'package:flutter_tooltip/src/models/tooltip_indicator_model.dart';
 import 'package:flutter_tooltip/src/models/tooltip_model.dart';
 import 'package:flutter_tooltip/src/widgets/background_painter.dart';
 import 'package:flutter_tooltip/src/widgets/tooltip_position_delete.dart';
+
+import 'widgets/flutter_slider_indicator.dart';
 
 class FlutterTooltip {
   static void showTips(List<TooltipModel> listTipsModel, BuildContext context,
@@ -19,7 +20,7 @@ class FlutterTooltip {
       Color tipsActionTextColor = tooltipsCons.cTipsActionTextColor,
       String tipsActionTextNext = tooltipsCons.cTipsActionTextNext,
       String tipsActionTextDone = tooltipsCons.cTipsActionTextDone,
-      TooltipIndicatorModel tooltipIndicatorModel}) async {
+      TooltipIndicatorModel? tooltipIndicatorModel}) async {
     if (tooltipIndicatorModel == null) {
       tooltipIndicatorModel = TooltipIndicatorModel(
           indicator: Icon(Icons.check_circle_outline),
@@ -42,13 +43,13 @@ class FlutterTooltip {
             tipsActionTextDone,
             tipsPadding,
             tipsActionPadding,
-            tooltipIndicatorModel);
+            tooltipIndicatorModel!);
         loop++;
       }
     });
   }
 
-  static Future<bool> _showTipsBuilder(
+  static Future<bool?> _showTipsBuilder(
       int length,
       int activeIndex,
       TooltipModel tipsModel,
@@ -62,7 +63,7 @@ class FlutterTooltip {
       EdgeInsetsGeometry tipsPadding,
       EdgeInsetsGeometry tipsActionPadding,
       TooltipIndicatorModel tooltipIndicatorModel) async {
-    final RenderBox box = tipsModel.key.currentContext.findRenderObject();
+    final RenderBox box = tipsModel.key.currentContext!.findRenderObject() as RenderBox;
     final Offset center = box.localToGlobal(box.size.center(Offset.zero));
     final Offset pos = box.localToGlobal(Offset(0.0, -26));
     return showGeneralDialog<bool>(

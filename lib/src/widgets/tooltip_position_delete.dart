@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TipsPositionDelegate extends SingleChildLayoutDelegate {
-  TipsPositionDelegate({@required this.target, this.preferBelow = false})
+  TipsPositionDelegate({required this.target, this.preferBelow = false})
       : assert(target != null);
 
   final Offset target;

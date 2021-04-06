@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class BackgroundPainter extends StatelessWidget {
   BackgroundPainter({this.pos, this.size});
 
-  final Offset pos;
-  final Size size;
+  final Offset? pos;
+  final Size? size;
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +16,15 @@ class BackgroundPainter extends StatelessWidget {
 }
 
 class _Painter extends CustomPainter {
-  final Offset pos;
-  final Size boxSize;
+  final Offset? pos;
+  final Size? boxSize;
+
   _Painter(this.pos, this.boxSize);
 
   @override
   void paint(Canvas canvas, Size size) {
     var rect = Offset.zero & size;
-    var newRect = pos & boxSize;
+    var newRect = (pos ?? Offset.zero) & (boxSize ?? Size.zero);
 
     canvas.saveLayer(rect, Paint());
     canvas.drawColor(Colors.black12, BlendMode.dstATop);
