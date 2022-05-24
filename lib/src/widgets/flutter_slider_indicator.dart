@@ -29,7 +29,7 @@ class _SliderIndicatorState extends State<SliderIndicator> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback(_onBuildCompleted);
+    WidgetsBinding.instance.addPostFrameCallback(_onBuildCompleted);
   }
 
   _onBuildCompleted(_) {
